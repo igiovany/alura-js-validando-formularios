@@ -1,6 +1,10 @@
 export default function itsCPF(input) {
   const cpf = input.value.replace(/\.|-/g, "")
-  checkRepeatedNumbers(cpf)
+  if(checkRepeatedNumbers(cpf) || checkFirstNumber(cpf) || checkSecondNumber(cpf)) {
+    console.log("CPF inválido!")
+  } else {
+    console.log("CPF válido!")
+  }
 }
 
 function checkRepeatedNumbers(cpf) {
@@ -18,4 +22,40 @@ function checkRepeatedNumbers(cpf) {
   ]
 
   return repeatedNumbers.includes(cpf)
+}
+
+function checkFirstNumber(cpf) {
+  let sum = 0
+  let multiplier = 10
+
+  for (let size = 0; size < 9; size++) {
+    sum += cpf[size] * multiplier
+    multiplier--
+  }
+
+  sum = (sum * 10) % 11;
+
+  if (sum == 10 || sum == 1) {
+    sum = 0
+  }
+
+  return sum != cpf[9]
+}
+
+function checkSecondNumber(cpf) {
+  let sum = 0
+  let multiplier = 11
+
+  for (let size = 0; size < 10; size++) {
+    sum += cpf[size] * multiplier
+    multiplier--
+  }
+
+  sum = (sum * 10) % 11;
+
+  if (sum == 10 || sum == 1) {
+    sum = 0
+  }
+
+  return sum != cpf[10]
 }
