@@ -1,7 +1,8 @@
 export default function itsOfLegalAge(input) {
   const birthDate = new Date(input.value)
-  // checkAge(birthDate)
-  console.log(checkAge(birthDate))
+  if(!checkAge(birthDate)) {
+    input.setCustomValidity('O usuário não é maior de idade')
+  } 
 }
 
 function checkAge(date) {

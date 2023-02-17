@@ -1,10 +1,8 @@
 export default function itsCPF(input) {
   const cpf = input.value.replace(/\.|-/g, "")
   if(checkRepeatedNumbers(cpf) || checkFirstNumber(cpf) || checkSecondNumber(cpf)) {
-    console.log("CPF inválido!")
-  } else {
-    console.log("CPF válido!")
-  }
+    input.setCustomValidity('CPF inválido')
+  } 
 }
 
 function checkRepeatedNumbers(cpf) {
